@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+/* Tailwind v4 wraps `hover:` in `@media (hover: hover)` by default, which on
+   touch-capable Windows devices can report the primary pointer as non-hover
+   even when using a mouse — silently no-op-ing every hover: utility in the
+   app regardless of cache state. Redefine it as a plain &:hover selector,
+   matching traditional CSS behavior, so hover always fires on real hover. */
+@custom-variant hover (&:hover);
+
+:root {
+  --paper: #F8FAFC;
+  --card: #FFFFFF;
+  --ink: #0F172A;
+  --ink-soft: #1E293B;
+  --slate: #475569;
+  --slate-quiet: #64748B;
+  --border: #E2E8F0;
+  --gold: #A16207;
+  --gold-bright: #B7791F;
+  --gold-wash: #FEF3E2;
+  --teal: #0E7490;
+  --teal-wash: #E6F4F7;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #DC2626;
+  --danger-wash: #FDECEC;
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.06);
+  --shadow-hover: 0 4px 8px rgba(15, 23, 42, 0.06), 0 12px 28px rgba(15, 23, 42, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0B1120;
+    --card: #131C2E;
+    --ink: #F1F5F9;
+    --ink-soft: #E2E8F0;
+    --slate: #94A3B8;
+    --slate-quiet: #64748B;
+    --border: #253148;
+    --gold: #D9A441;
+    --gold-bright: #E8B657;
+    --gold-wash: rgba(217, 164, 65, 0.12);
+    --teal: #38BDC9;
+    --teal-wash: rgba(56, 189, 201, 0.1);
+    --success: #34D399;
+    --warning: #FBBF24;
+    --danger: #F87171;
+    --danger-wash: rgba(248, 113, 113, 0.1);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(0, 0, 0, 0.35);
+    --shadow-hover: 0 4px 10px rgba(0, 0, 0, 0.25), 0 16px 36px rgba(0, 0, 0, 0.45);
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #0B1120;
+  --card: #131C2E;
+  --ink: #F1F5F9;
+  --ink-soft: #E2E8F0;
+  --slate: #94A3B8;
+  --slate-quiet: #64748B;
+  --border: #253148;
+  --gold: #D9A441;
+  --gold-bright: #E8B657;
+  --gold-wash: rgba(217, 164, 65, 0.12);
+  --teal: #38BDC9;
+  --teal-wash: rgba(56, 189, 201, 0.1);
+  --success: #34D399;
+  --warning: #FBBF24;
+  --danger: #F87171;
+  --danger-wash: rgba(248, 113, 113, 0.1);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 4px 10px rgba(0, 0, 0, 0.25), 0 16px 36px rgba(0, 0, 0, 0.45);
+}
+
+:root[data-theme="light"] {
+  --paper: #F8FAFC;
+  --card: #FFFFFF;
+  --ink: #0F172A;
+  --ink-soft: #1E293B;
+  --slate: #475569;
+  --slate-quiet: #64748B;
+  --border: #E2E8F0;
+  --gold: #A16207;
+  --gold-bright: #B7791F;
+  --gold-wash: #FEF3E2;
+  --teal: #0E7490;
+  --teal-wash: #E6F4F7;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #DC2626;
+  --danger-wash: #FDECEC;
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.06);
+  --shadow-hover: 0 4px 8px rgba(15, 23, 42, 0.06), 0 12px 28px rgba(15, 23, 42, 0.1);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist);
+  --font-display: var(--font-fraunces);
+
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-slate: var(--slate);
+  --color-slate-quiet: var(--slate-quiet);
+  --color-border: var(--border);
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
+  --color-gold-wash: var(--gold-wash);
+  --color-teal: var(--teal);
+  --color-teal-wash: var(--teal-wash);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-danger-wash: var(--danger-wash);
+
+  /* Legacy "Tech Slate & Teal" class names, pointed at their new-system
+     equivalents so components not yet reskinned stay visually coherent. */
+  --color-slate-primary: var(--ink-soft);
+  --color-slate-secondary: var(--slate);
+  --color-teal-accent: var(--teal);
+  --color-surface: var(--paper);
+}
+
+body {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Site-wide reduced-motion safety net. Every hover/enter transition in this
+   project relies on this blanket rule instead of a per-component guard —
+   one place to keep correct rather than one more class to remember on every
+   element that gets a transition. Final states are preserved (only
+   durations collapse), so layouts never break for users with this
+   preference set. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* One-time "materialize" entrance for hero copy and below-the-fold sections
+   as they first appear (page load or scroll into view). Deliberately
+   understated: 10px of movement, no bounce, never re-triggers. `backwards`
+   fill-mode prevents the pre-animation flash this codebase's own comment on
+   --shadow-hover et al. would otherwise cause with a delay (element would
+   flash at full opacity, then pop invisible, then fade in) — see
+   components/marketing/Reveal.js for the trigger. */
+@keyframes marketing-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.marketing-fade-up {
+  animation: marketing-fade-up 500ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+/* Nav's mobile menu — origin-aware (drops from the header it opens
+   beneath, per the cookbook's transform-origin guidance), shorter than the
+   section reveal above since this is a small, frequent-ish open/close
+   rather than a one-time page entrance. */
+@keyframes nav-menu-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.nav-menu-enter {
+  animation: nav-menu-in 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top center;
+}
+
+/* Shorter, translate-free fade for content that swaps while already
+   visible (a tab's example panel, an icon changing state) — the "state
+   changing" case is deliberately lighter than the "entering the page"
+   case above (marketing-fade-up), per the enter-vs-state-change distinction
+   in the motion cookbook. Re-triggered by giving the swapped element a new
+   `key`, which remounts it and replays the animation. */
+@keyframes marketing-content-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.marketing-content-fade {
+  animation: marketing-content-fade 220ms cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+/* iOS Safari (and some Android Chrome builds) auto-zoom the whole page when
+   a focused form field's font-size is under 16px, and don't reliably zoom
+   back out on navigation. The demo request form's inputs use Tailwind's
+   text-sm (14px), which is below that threshold. Overriding at 16px only
+   below the desktop breakpoint keeps the existing visual design untouched
+   on desktop, where this browser behavior doesn't happen anyway. Scoped by
+   media query rather than editing the form's className. !important is
+   required here — text-sm etc. are applied as classes directly on these
+   elements, which outrank a bare element selector on specificity alone
+   regardless of source order. */
+@media (max-width: 767px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Toast notifications — baseline minimal-functional motion. */
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes toast-out {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(24px); }
+}
+@keyframes toast-progress {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+.toast-enter {
+  animation: toast-in 200ms ease-out;
+}
+.toast-exit {
+  animation: toast-out 200ms ease-in forwards;
+}
+.toast-progress {
+  animation: toast-progress linear forwards;
+  animation-duration: 4000ms;
+}
+.toast-item:hover .toast-progress {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast-enter,
+  .toast-exit,
+  .toast-progress {
+    animation: none !important;
+  }
+}
