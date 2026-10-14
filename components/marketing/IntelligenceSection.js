@@ -5,7 +5,8 @@ import Reveal from "./Reveal";
 // aspirational copy. Student/Class Intelligence: Learning Checks' weak-
 // topic detection. Attendance Intelligence: evaluateAttendanceAlerts'
 // real deterministic pattern detection. AI Assessment: Diagnostic Quiz +
-// AI Practice, both Gemini-generated and server-side scored.
+// AI Practice, both Gemini-generated and server-side scored, plus
+// AI-Assisted Exam Setting (teacher-reviewed exam papers, PDF output).
 const CAPABILITIES = [
   {
     label: "Student Intelligence",
@@ -24,7 +25,7 @@ const CAPABILITIES = [
   },
   {
     label: "AI Assessment",
-    copy: "Generate curriculum-grounded quizzes, score responses automatically, and identify weakest skills.",
+    copy: "Draft curriculum-grounded exam papers and quizzes, score quizzes automatically, and identify weakest skills.",
     Icon: ClipboardCheckIcon,
   },
 ];

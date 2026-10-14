@@ -63,7 +63,7 @@ export function AcademicManagementSection() {
         { label: "Assignments", copy: "Teachers create and grade; students submit — with real file uploads, start to finish.", Icon: FileTextIcon },
         { label: "Attendance", copy: "Mark daily attendance and catch patterns before they become a problem.", Icon: ClockIcon },
         { label: "Academic Progress", copy: "Track a student's performance across terms and academic years.", Icon: TrendingUpIcon },
-        { label: "Assessments", copy: "AI-generated diagnostic quizzes and student-initiated practice, both curriculum-grounded.", Icon: ClipboardCheckIcon },
+        { label: "Assessments", copy: "AI-assisted exam papers, diagnostic quizzes and student practice, all curriculum-grounded.", Icon: ClipboardCheckIcon },
       ]}
     />
   );

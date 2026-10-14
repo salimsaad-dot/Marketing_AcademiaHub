@@ -1,4 +1,4 @@
-import { BookIcon, ClockIcon, StudentIcon, CoinsIcon, MessageIcon, TrendingUpIcon, UsersIcon, CalendarIcon, LockIcon } from "./icons";
+import { BookIcon, ClockIcon, StudentIcon, CoinsIcon, MessageIcon, TrendingUpIcon, UsersIcon, ClipboardCheckIcon, LockIcon } from "./icons";
 import Reveal from "./Reveal";
 
 // 9 real modules — every one of these exists and is shipped. The
@@ -15,6 +15,11 @@ import Reveal from "./Reveal";
 // Financial Intelligence audit confirmed no expense-tracking feature
 // exists anywhere in this system — caught in the same session, fixed
 // immediately rather than left inconsistent with reality.
+// 2026-10-14: Timetable Management swapped for Examinations (exam
+// periods, exam timetable with clash detection, results, AI-assisted
+// exam setting), which shipped after this grid was written. Timetables
+// are still covered by Academic Management's copy, and the grid stays
+// at 9 so the 3-column layout has no orphan card.
 const MODULES = [
   { label: "Academic Management", copy: "Manage classes, subjects, timetables, lesson plans, assignments and grades.", Icon: BookIcon },
   { label: "Attendance Management", copy: "Take, monitor and analyze attendance across students, staff and classes.", Icon: ClockIcon },
@@ -23,7 +28,7 @@ const MODULES = [
   { label: "Communication", copy: "Send messages, announcements and stay connected with your school community.", Icon: MessageIcon },
   { label: "Reports & Analytics", copy: "Get real-time insights and generate detailed reports effortlessly.", Icon: TrendingUpIcon },
   { label: "Staff Management", copy: "Manage staff records, roles, departments and salaries.", Icon: UsersIcon },
-  { label: "Timetable Management", copy: "Build and manage weekly class timetables across every grade.", Icon: CalendarIcon },
+  { label: "Examinations", copy: "Schedule exam periods and timetables, track results, and set curriculum-grounded papers with AI assistance.", Icon: ClipboardCheckIcon },
   { label: "System & Security", copy: "Role-based access, secure login, protected data and audit trails.", Icon: LockIcon },
 ];
 
