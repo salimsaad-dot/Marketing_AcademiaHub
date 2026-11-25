@@ -16,7 +16,7 @@ export default function FounderSection() {
             {/* eslint-disable-next-line @next/next/no-img-element -- static marketing asset, not a build-time-optimized page image */}
             <img
               src="/marketing/founder.png"
-              alt="The founder of Academia Hub"
+              alt="Saad Salim, founder of Academia Hub"
               className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
             />
           </div>
@@ -46,6 +46,9 @@ export default function FounderSection() {
                 reach out directly
               </Link>{" "}
               — I&apos;m building this alongside real schools, not from a distance.
+            </p>
+            <p className="mt-6 font-display text-lg font-semibold text-ink">
+              Saad Salim <span className="text-base font-normal text-slate-quiet">· Founder</span>
             </p>
           </div>
         </Reveal>
